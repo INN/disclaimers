@@ -14,5 +14,8 @@
 	"type": "wordpress-plugin",
 	"autoload": {
 		"classmap": ["disclaimers.php", "includes/"]
+	},
+	"require": {
+		"webdevstudios/cmb2": "^2.2"
 	}
 }
