@@ -1,0 +1,19 @@
+{
+  "generator-plugin-wp": {
+    "name": "Disclaimers",
+    "homepage": "https://labs.inn.org",
+    "description": "A radical new plugin for WordPress!",
+    "version": "1.0.0",
+    "author": "inn_nerds",
+    "authoremail": "nerds@inn.org",
+    "authorurl": "https://labs.inn.org",
+    "license": "GPLv2",
+    "slug": "disclaimers",
+    "classname": "Disclaimers",
+    "mainclassname": "Disclaimers",
+    "classprefix": "D_",
+    "prefix": "disclaimers",
+    "year": 2017,
+    "currentVersionWP": "4.7.2"
+  }
+}

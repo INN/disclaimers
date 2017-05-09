@@ -1,0 +1,18 @@
+{
+	"name": "disclaimers",
+	"description": "A radical new plugin for WordPress!",
+	"keywords": ["wordpress", "plugin", "generator-plugin-wp"],
+	"homepage": "https://labs.inn.org",
+	"license": "GPLv2",
+	"authors": [
+	{
+		"name": "inn_nerds",
+		"homepage": "https://labs.inn.org"
+	}
+	],
+	"minimum-stability": "dev",
+	"type": "wordpress-plugin",
+	"autoload": {
+		"classmap": ["disclaimers.php", "includes/"]
+	}
+}
