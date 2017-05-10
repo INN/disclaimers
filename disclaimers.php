@@ -38,8 +38,26 @@
  */
 
 
-// Use composer autoload.
-require 'vendor/autoload.php';
+/**
+ * Autoloads files with classes when needed.
+ *
+ * @since  1.0.0
+ * @param  string $class_name Name of the class being requested.
+ */
+function disclaimers_autoload_classes( $class_name ) {
+
+	// If our class doesn't have our prefix, don't load it.
+	if ( 0 !== strpos( $class_name, 'D_' ) ) {
+		return;
+	}
+
+	// Set up our filename.
+	$filename = strtolower( str_replace( '_', '-', substr( $class_name, strlen( 'D_' ) ) ) );
+
+	// Include our file.
+	Disclaimers::include_file( 'includes/class-' . $filename );
+}
+spl_autoload_register( 'disclaimers_autoload_classes' );
 
 /**
  * Main initiation class.
@@ -97,6 +115,14 @@ final class Disclaimers {
 	protected static $single_instance = null;
 
 	/**
+	 * Instance of D_Fields
+	 *
+	 * @since1.0.0
+	 * @var D_Fields
+	 */
+	protected $fields;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   1.0.0
@@ -127,8 +153,8 @@ final class Disclaimers {
 	 * @since  1.0.0
 	 */
 	public function plugin_classes() {
-		// $this->plugin_class = new D_Plugin_Class( $this );
 
+		$this->fields = new D_Fields( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -284,10 +310,55 @@ final class Disclaimers {
 			case 'basename':
 			case 'url':
 			case 'path':
+			case 'fields':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
+	}
+
+	/**
+	 * Include a file from the includes directory.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  string $filename Name of the file to be included.
+	 * @return boolean          Result of include call.
+	 */
+	public static function include_file( $filename ) {
+		$file = self::dir( $filename . '.php' );
+		if ( file_exists( $file ) ) {
+			return include_once( $file );
+		}
+		return false;
+	}
+
+	/**
+	 * This plugin's directory.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  string $path (optional) appended path.
+	 * @return string       Directory and path.
+	 */
+	public static function dir( $path = '' ) {
+		static $dir;
+		$dir = $dir ? $dir : trailingslashit( dirname( __FILE__ ) );
+		return $dir . $path;
+	}
+
+	/**
+	 * This plugin's url.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  string $path (optional) appended path.
+	 * @return string       URL and path.
+	 */
+	public static function url( $path = '' ) {
+		static $url;
+		$url = $url ? $url : trailingslashit( plugin_dir_url( __FILE__ ) );
+		return $url . $path;
 	}
 }
 
