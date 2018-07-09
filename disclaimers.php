@@ -3,8 +3,8 @@
  * Plugin Name: Disclaimers
  * Plugin URI:  https://labs.inn.org
  * Description: A radical new plugin for WordPress!
- * Version:     1.0.0
- * Author:      inn_nerds
+ * Version:     0.1.0
+ * Author:      innlabs
  * Author URI:  https://labs.inn.org
  * Donate link: https://labs.inn.org
  * License:     GPLv2
@@ -14,7 +14,7 @@
  * @link    https://labs.inn.org
  *
  * @package Disclaimers
- * @version 1.0.0
+ * @version 0.1.0
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
@@ -36,28 +36,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-
-/**
- * Autoloads files with classes when needed.
- *
- * @since  1.0.0
- * @param  string $class_name Name of the class being requested.
- */
-function disclaimers_autoload_classes( $class_name ) {
-
-	// If our class doesn't have our prefix, don't load it.
-	if ( 0 !== strpos( $class_name, 'D_' ) ) {
-		return;
-	}
-
-	// Set up our filename.
-	$filename = strtolower( str_replace( '_', '-', substr( $class_name, strlen( 'D_' ) ) ) );
-
-	// Include our file.
-	Disclaimers::include_file( 'includes/class-' . $filename );
-}
-spl_autoload_register( 'disclaimers_autoload_classes' );
 
 /**
  * Main initiation class.
@@ -115,14 +93,6 @@ final class Disclaimers {
 	protected static $single_instance = null;
 
 	/**
-	 * Instance of D_Fields
-	 *
-	 * @since1.0.0
-	 * @var D_Fields
-	 */
-	protected $fields;
-
-	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   1.0.0
@@ -154,7 +124,6 @@ final class Disclaimers {
 	 */
 	public function plugin_classes() {
 
-		$this->fields = new D_Fields( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -201,7 +170,6 @@ final class Disclaimers {
 	 * @since  1.0.0
 	 */
 	public function init() {
-
 		// Bail early if requirements aren't met.
 		if ( ! $this->check_requirements() ) {
 			return;
