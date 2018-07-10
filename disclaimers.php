@@ -39,6 +39,7 @@
 
 $includes = array(
 	'/includes/largo-disclaimer-widget.php',
+	'/includes/metaboxes.php',
 );
 foreach ( $includes as $include ) {
 	if ( 0 === validate_file( dirname( __FILE__ ) . $include ) ) {
