@@ -37,6 +37,17 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+$includes = array(
+	'/includes/largo-disclaimer-widget.php',
+);
+foreach ( $includes as $include ) {
+	if ( 0 === validate_file( dirname( __FILE__ ) . $include ) ) {
+		require_once( dirname( __FILE__ ) . $include );
+	} else {
+		error_log(var_export( dirname( __FILE__ ) . $include , true));
+	}
+}
+
 /**
  * Main initiation class.
  *
@@ -283,22 +294,6 @@ final class Disclaimers {
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
-	}
-
-	/**
-	 * Include a file from the includes directory.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  string $filename Name of the file to be included.
-	 * @return boolean          Result of include call.
-	 */
-	public static function include_file( $filename ) {
-		$file = self::dir( $filename . '.php' );
-		if ( file_exists( $file ) ) {
-			return include_once( $file );
-		}
-		return false;
 	}
 
 	/**
