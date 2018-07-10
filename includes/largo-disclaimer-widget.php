@@ -44,3 +44,13 @@ class largo_disclaimer_widget extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 	}
 }
+
+/**
+ * Register this widget
+ *
+ * @since 0.1.0
+ */
+function largo_register_disclaimer_widget() {
+	register_widget( 'largo_disclaimer_widget' );
+}
+add_action( 'widgets_init', 'largo_register_disclaimer_widget' );
