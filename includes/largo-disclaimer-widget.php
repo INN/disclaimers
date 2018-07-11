@@ -1,46 +1,70 @@
 <?php
-/*
- * About this site
+/**
+ * The Disclaimer widget output
+ */
+
+/**
+ * The Disclaimer widget
+ *
+ * The classname here is 'largo_disclaimer_widget' for backwards compatibility
+ * with versions of the Largo theme v0.5.5.4 and before, which included this
+ * widget and associated functionality in the theme.
+ *
+ * @link https://github.com/INN/largo/issues/1500
  */
 class largo_disclaimer_widget extends WP_Widget {
 
-	function __construct() {
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
 		$widget_ops = array(
-			'classname' 	=> 'largo-disclaimer',
-			'description'	=> __('Show the article disclaimer', 'largo')
+			'classname'   => 'largo-disclaimer',
+			'description' => __( 'Show the article disclaimer', 'largo' ),
 		);
-		parent::__construct( 'largo-disclaimer-widget', __('Largo Disclaimer', 'largo'), $widget_ops);
+		parent::__construct( 'largo-disclaimer-widget', __( 'Disclaimer', 'largo' ), $widget_ops );
 	}
 
-	function widget( $args, $instance ) {
-		if ( !is_single() ) {
+	/**
+	 * The widget output
+	 *
+	 * @param array $args Display arguments including 'before_title', 'after_title', 'before_widget', and 'after_widget'.
+	 * @param array $instance The settings for the particular instance of the widget.
+	 */
+	public function widget( $args, $instance ) {
+		if ( ! is_single() ) {
 			return;
 		}
 
-		extract( $args );
+		echo wp_kses_post( $args['before_widget'] );
 
-		echo $before_widget;
-		?>
-			<?php if ( get_post_meta(get_the_ID(), 'disclaimer', true ) ): ?>
-				<?php echo get_post_meta(get_the_ID(), 'disclaimer', true ); ?>
-			<?php elseif ( of_get_option( 'default_disclaimer' ) ) : ?>
-        <?php echo of_get_option( 'default_disclaimer' ); ?>
-			<?php else: ?>
-    			<p class="error"><strong><?php _e('You have not set a disclaimer for your site.</strong> Add a site disclaimer by visiting the Largo Theme Options page.', 'largo'); ?></p>
-      <?php endif; ?>
+		if ( get_post_meta( get_the_ID(), 'disclaimer', true ) ) {
+			echo get_post_meta( get_the_ID(), 'disclaimer', true );
+		} elseif ( get_option( 'disclaimer_default_disclaimer' ) ) {
+			echo get_option( 'disclaimer_default_disclaimer' );
+		} else {
+			?>
+			<p class="error"><strong><?php esc_html_e( 'You have not set a disclaimer for your site.</strong> Add a site disclaimer by visiting the Largo Theme Options page.', 'largo' ); ?></p>
+			<?php
+		}
 
-		<?php
-		echo $after_widget;
+		echo wp_kses_post( $args['after_widget'] );
 	}
 
-	function update( $new_instance, $old_instance ) {
+	/**
+	 * Save widget options
+	 */
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		return $instance;
 	}
 
-	function form( $instance ) {
-		$defaults = array( 'title' => __('About ' . get_bloginfo('name'), 'largo') );
+	/**
+	 * Widget options form
+	 */
+	public function form( $instance ) {
+		$defaults = array( 'title' => __( 'About ' . get_bloginfo( 'name' ), 'largo' ) );
 		$instance = wp_parse_args( (array) $instance, $defaults );
 	}
 }
