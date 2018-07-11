@@ -51,22 +51,11 @@ class largo_disclaimer_widget extends WP_Widget {
 		echo wp_kses_post( $args['after_widget'] );
 	}
 
-	/**
-	 * Save widget options
+	/*
+	 * This widget does not override WP_Widget::form() or WP_Widget::update()
+	 * because there's nothing to configure. This widget does not even display
+	 * a title, as noted in https://github.com/INN/largo/issues/1201
 	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		return $instance;
-	}
-
-	/**
-	 * Widget options form
-	 */
-	public function form( $instance ) {
-		$defaults = array( 'title' => __( 'About ' . get_bloginfo( 'name' ), 'largo' ) );
-		$instance = wp_parse_args( (array) $instance, $defaults );
-	}
 }
 
 /**
