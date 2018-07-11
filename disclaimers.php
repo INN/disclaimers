@@ -38,7 +38,7 @@
  */
 
 $includes = array(
-	'/includes/largo-disclaimer-widget.php',
+	'/includes/class-largo-disclaimer-widget.php',
 	'/includes/metaboxes.php',
 );
 foreach ( $includes as $include ) {
