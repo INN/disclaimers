@@ -35,12 +35,6 @@ function options_page_callback() {
 		return;
 	}
 
-	// add error/update messages
-	if ( isset( $_GET['settings-updated'] ) ) {
-		// add settings saved message with the class of "updated"
-		add_settings_error( 'disclaimers_messages', 'disclaimers_message', __( 'Settings Saved', 'wporg' ), 'updated' );
-	}
-
 	settings_errors( 'disclaimers_messages' );
 
 	printf(
