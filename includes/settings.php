@@ -86,7 +86,11 @@ function init() {
 }
 add_action( 'admin_init', __NAMESPACE__ . '\init' );
 
-// sanitize callback
+/**
+ * Sanitization callback for the option key
+ *
+ * @since 0.1.0
+ */
 function sanitize_callback( $value ) {
 	// check capabilities
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -94,10 +98,7 @@ function sanitize_callback( $value ) {
 		return;
 	}
 
-	error_log(var_export( $value, true));
-
 	$sanitized = wp_kses_post( $value );
-	update_option( Disclaimers::OPTION_KEY, $value );
 
 	return wp_kses_post( $value );
 }
