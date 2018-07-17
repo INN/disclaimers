@@ -38,14 +38,13 @@ class largo_disclaimer_widget extends WP_Widget {
 
 		echo wp_kses_post( $args['before_widget'] );
 
-		if ( get_post_meta( get_the_ID(), 'disclaimer', true ) ) {
-			echo get_post_meta( get_the_ID(), 'disclaimer', true );
-		} elseif ( get_option( 'disclaimer_default_disclaimer' ) ) {
-			echo get_option( 'disclaimer_default_disclaimer' );
-		} else {
-			?>
-			<p class="error"><strong><?php esc_html_e( 'You have not set a disclaimer for your site.</strong> Add a site disclaimer by visiting the Largo Theme Options page.', 'largo' ); ?></p>
-			<?php
+		$disclaimer = wp_kses_post( get_post_meta( get_the_ID(), 'disclaimer', true  ) );
+		$sitewide = wp_Kses_post(  get_option( 'disclaimer_default_disclaimer' ) );
+
+		if ( ! empty( $disclaimer ) ) {
+			echo $disclaimer;
+		} elseif ( ! empty( $sitewide ) ) {
+			echo $sitewide;
 		}
 
 		echo wp_kses_post( $args['after_widget'] );
