@@ -2,6 +2,7 @@
 /**
  * Post Meta box functions for the Disclaimer widget's per-post disclaimer functionality.
  */
+namespace INN\Disclaimers\Metaboxes;
 
 // Disclaimer
 add_action( 'widgets_init', function() {
@@ -29,7 +30,7 @@ add_action( 'widgets_init', function() {
 		$value = get_post_meta( $post->ID, 'disclaimer', true );
 
 		if ( empty( $value ) ) {
-			$value = of_get_option( 'default_disclaimer' );
+			$value = get_option( 'default_disclaimer' );
 		}
 
 		echo '<p><strong>' . __('Disclaimer', 'largo') . '</strong><br />';
@@ -39,3 +40,6 @@ add_action( 'widgets_init', function() {
 	largo_register_meta_input( 'disclaimer', 'wp_filter_post_kses' );
 
 } );
+
+// @todo: port the above to standard wordpress-y of doing things
+// make sure it works with and without largo
