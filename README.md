@@ -3,14 +3,14 @@
 **Donate link:**       https://labs.inn.org  
 **Tags:**  
 **Requires at least:** 4.4  
-**Tested up to:**      4.7.2 
-**Stable tag:**        1.0.0  
-**License:**           GPLv2  
+**Tested up to:**      4.9.7  
+**Stable tag:**        0.1.0  
+**License:**           GPLv2 or later  
 **License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
 
 ## Description ##
 
-A radical new plugin for WordPress!
+This plugin implements a widget allowing you to display disclaimers 
 
 ## Installation ##
 
@@ -27,10 +27,10 @@ A radical new plugin for WordPress!
 
 ## Changelog ##
 
-### 1.0.0 ###
-* First release
+### 0.1.0 ###
 
-## Upgrade Notice ##
+The first release of this plugin, containing:
 
-### 1.0.0 ###
-First Release
+* Site-wide standard disclosure settings in the site's **Settings > Disclosures** menu entry
+* Per-post disclosure settings
+* A widget to display each post's disclosures
