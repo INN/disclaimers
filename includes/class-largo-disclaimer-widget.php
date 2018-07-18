@@ -38,7 +38,12 @@ class largo_disclaimer_widget extends WP_Widget {
 
 		echo wp_kses_post( $args['before_widget'] );
 
-		$disclaimer = wp_kses_post( get_post_meta( get_the_ID(), 'disclaimer', true  ) );
+		$title = apply_filters( 'widget_title', $args['title'] );
+		if ( ! empty( $title ) ) {
+			echo wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
+		}
+
+		$disclaimer = wp_kses_post( get_post_meta( get_the_ID(), 'disclaimer', true ) );
 		$sitewide = wp_Kses_post(  get_option( 'disclaimer_default_disclaimer' ) );
 
 		if ( ! empty( $disclaimer ) ) {
