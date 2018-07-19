@@ -37,10 +37,21 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+$includes = array(
+	'/includes/class-largo-disclaimer-widget.php',
+	'/includes/metaboxes.php',
+	'/includes/settings.php',
+);
+foreach ( $includes as $include ) {
+	if ( 0 === validate_file( dirname( __FILE__ ) . $include ) ) {
+		require_once( dirname( __FILE__ ) . $include );
+	}
+}
+
 /**
  * Main initiation class.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class Disclaimers {
 
@@ -48,15 +59,31 @@ final class Disclaimers {
 	 * Current version.
 	 *
 	 * @var    string
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '0.1.0';
+
+	/**
+	 * Option key
+	 *
+	 * @var string
+	 * @since 0.1.0
+	 */
+	const OPTION_KEY = 'inn_disclaimers_sitewide';
+
+	/**
+	 * Option group
+	 *
+	 * @var string
+	 * @since 0.1.0
+	 */
+	const OPTION_GROUP = 'inn_disclaimers';
 
 	/**
 	 * URL of plugin directory.
 	 *
 	 * @var    string
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected $url = '';
 
@@ -64,7 +91,7 @@ final class Disclaimers {
 	 * Path of plugin directory.
 	 *
 	 * @var    string
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected $path = '';
 
@@ -72,7 +99,7 @@ final class Disclaimers {
 	 * Plugin basename.
 	 *
 	 * @var    string
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected $basename = '';
 
@@ -80,7 +107,7 @@ final class Disclaimers {
 	 * Detailed activation error messages.
 	 *
 	 * @var    array
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected $activation_errors = array();
 
@@ -88,14 +115,14 @@ final class Disclaimers {
 	 * Singleton instance of plugin.
 	 *
 	 * @var    Disclaimers
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected static $single_instance = null;
 
 	/**
 	 * Creates or returns an instance of this class.
 	 *
-	 * @since   1.0.0
+	 * @since   0.1.0
 	 * @return  Disclaimers A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -109,7 +136,7 @@ final class Disclaimers {
 	/**
 	 * Sets up our plugin.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
@@ -120,7 +147,7 @@ final class Disclaimers {
 	/**
 	 * Attach other plugin classes to the base plugin class.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function plugin_classes() {
 
@@ -133,7 +160,7 @@ final class Disclaimers {
 	 * < 5 for Taxonomy_Core,
 	 * and 0 for Widgets because widgets_init runs at init priority 1.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function hooks() {
 		add_action( 'init', array( $this, 'init' ), 0 );
@@ -142,7 +169,7 @@ final class Disclaimers {
 	/**
 	 * Activate the plugin.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function _activate() {
 		// Bail early if requirements aren't met.
@@ -158,7 +185,7 @@ final class Disclaimers {
 	 * Deactivate the plugin.
 	 * Uninstall routines should be in uninstall.php.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function _deactivate() {
 		// Add deactivation cleanup functionality here.
@@ -167,7 +194,7 @@ final class Disclaimers {
 	/**
 	 * Init hooks
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function init() {
 		// Bail early if requirements aren't met.
@@ -186,7 +213,7 @@ final class Disclaimers {
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 *
 	 * @return boolean True if requirements met, false if not.
 	 */
@@ -210,7 +237,7 @@ final class Disclaimers {
 	/**
 	 * Deactivates this plugin, hook this function on admin_init.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function deactivate_me() {
 
@@ -224,7 +251,7 @@ final class Disclaimers {
 	/**
 	 * Check that all plugin requirements are met.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 *
 	 * @return boolean True if requirements are met.
 	 */
@@ -238,7 +265,7 @@ final class Disclaimers {
 	/**
 	 * Adds a notice to the dashboard if the plugin requirements are not met.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 */
 	public function requirements_not_met_notice() {
 
@@ -265,7 +292,7 @@ final class Disclaimers {
 	/**
 	 * Magic getter for our object.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $field Field to get.
 	 * @throws Exception     Throws an exception if the field is invalid.
@@ -286,25 +313,9 @@ final class Disclaimers {
 	}
 
 	/**
-	 * Include a file from the includes directory.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  string $filename Name of the file to be included.
-	 * @return boolean          Result of include call.
-	 */
-	public static function include_file( $filename ) {
-		$file = self::dir( $filename . '.php' );
-		if ( file_exists( $file ) ) {
-			return include_once( $file );
-		}
-		return false;
-	}
-
-	/**
 	 * This plugin's directory.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $path (optional) appended path.
 	 * @return string       Directory and path.
@@ -318,7 +329,7 @@ final class Disclaimers {
 	/**
 	 * This plugin's url.
 	 *
-	 * @since  1.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $path (optional) appended path.
 	 * @return string       URL and path.
@@ -334,7 +345,7 @@ final class Disclaimers {
  * Grab the Disclaimers object and return it.
  * Wrapper for Disclaimers::get_instance().
  *
- * @since  1.0.0
+ * @since  0.1.0
  * @return Disclaimers  Singleton instance of plugin class.
  */
 function disclaimers() {
