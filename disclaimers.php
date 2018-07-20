@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Disclaimers
- * Plugin URI:  https://labs.inn.org
+ * Plugin URI:  https://github.com/INN/disclaimers/
  * Description: A radical new plugin for WordPress!
  * Version:     0.1.0
  * Author:      innlabs
  * Author URI:  https://labs.inn.org
- * Donate link: https://labs.inn.org
+ * Donate link: https://inn.org/donate/
  * License:     GPLv2
  * Text Domain: disclaimers
  * Domain Path: /languages
