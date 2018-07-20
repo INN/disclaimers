@@ -10,6 +10,7 @@ SVN_REPO="https://plugins.svn.wordpress.org/plugin-slug-goes-here/";
 BLACKLIST=(
 .\*
 ./\*\*/.\*
+node_modules/\*
 Gruntfile.js
 package.json
 phpunit.xml
