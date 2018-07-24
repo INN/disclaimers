@@ -1,11 +1,15 @@
 {
 	"name": "disclaimers",
 	"title": "Disclaimers",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "A radical new plugin for WordPress!",
 	"author": {
 		"name": "inn_nerds",
 		"url": "https://labs.inn.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:INN/disclaimers.git"
 	},
 	"license": "GPLv2",
 	"devDependencies": {
