@@ -3,7 +3,7 @@
  * Plugin Name: Disclaimers
  * Plugin URI:  https://github.com/INN/disclaimers/
  * Description: A radical new plugin for WordPress!
- * Version:     0.1.0
+ * Version:     0.1.1
  * Author:      innlabs
  * Author URI:  https://labs.inn.org
  * Donate link: https://inn.org/donate/
@@ -14,7 +14,7 @@
  * @link    https://labs.inn.org
  *
  * @package Disclaimers
- * @version 0.1.0
+ * @version 0.1.1
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
@@ -61,7 +61,7 @@ final class Disclaimers {
 	 * @var    string
 	 * @since  0.1.0
 	 */
-	const VERSION = '0.1.0';
+	const VERSION = '0.1.1';
 
 	/**
 	 * Option key
