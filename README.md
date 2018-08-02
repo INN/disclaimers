@@ -10,6 +10,8 @@
 
 Display disclaimers for posts or your whole site using a handy widget.
 
+![on an orange background, a black-bordered white triangle with black asterisk](./icon.png)
+
 ## Description ##
 
 This plugin implements a widget allowing you to display disclaimers. Disclaimers can be set on a site-wide basis or on a per-post basis, with per-post disclaimers overriding site-wide disclaimers.
