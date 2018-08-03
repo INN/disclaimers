@@ -39,6 +39,10 @@ For screenshots of this plugin in action, see [the release announcement blog pos
 
 == Changelog ==
 
+= unreleased =
+
+- adds an SVG icon.
+
 = 0.1.1 =
 
 - Fixes a bug where the sitewide disclaimer would not show in the widget.
